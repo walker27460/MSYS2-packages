@@ -2,7 +2,7 @@
 
 pkgbase=zsh
 pkgname=('zsh' 'zsh-doc')
-pkgver=5.4.2
+pkgver=5.5.1
 pkgrel=1
 arch=('i686' 'x86_64')
 url='https://www.zsh.org/'
@@ -18,9 +18,9 @@ source=("https://downloads.sourceforge.net/project/zsh/zsh/${pkgver}/zsh-${pkgve
         msysize.patch
         zsh-5.0.6-1.patch
         msys-symlink-hack.patch)
-sha256sums=('a80b187b6b770f092ea1f53e89021d06c03d8bbe6a5e996bcca3267de14c5e52'
+sha256sums=('e1c38808fcbe0cc1344d55c9a758349f7ba1e317325b154621ac37eddac4aa80'
             'SKIP'
-            '5229cc93ebe637a07deb5b386b705c37a50f4adfef788b3c0f6647741df4f6bd'
+            '41ce13a89a6bc7e709b6f110e54288d59f02ba2becd2646895d28188d4dd6283'
             'SKIP'
             '794439fde1d86ebc688f622d7aac3b46497831de5c5e4c4ed43a604e5d6ead56'
             '72e02ea93447038f8ced24f296b31e0f397bbcc6b32abdcf9b38c80f153433fd'
@@ -30,6 +30,7 @@ sha256sums=('a80b187b6b770f092ea1f53e89021d06c03d8bbe6a5e996bcca3267de14c5e52'
             '4c13a4b3685b04747c48e2d3c983ec1bf01094967e39c9cabef8c9029da6e6bf'
             '336a8e6e93b778e7aec27348619b7200e0a75e5cf14dce720afd9dd6f836ea2c'
             'de515b0d86c13c29a663b4ba0fdb338dea83f82f145cf8c4da78d30369f963e4')
+validpgpkeys=('F7B2754C7DE2830914661F0EA71D9A9D4BDB27B3')
 
 prepare() {
   cd ${srcdir}/${pkgname}-${pkgver}
