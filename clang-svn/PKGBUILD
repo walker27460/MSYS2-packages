@@ -1,6 +1,6 @@
 # Maintainer: Martell Malone <MartellMalone@gmail.com>
 # Contributor: Ray Donnelly <mingw.android@gmail.com>
-
+_generator="Unix Makefiles"
 _realname=clang
 pkgbase=clang-svn
 pkgname=("llvm-svn"
@@ -120,8 +120,7 @@ build() {
   FFI_INCLUDE_DIR=$(echo $FFI_INCLUDE_DIR | sed 's|-I||g')
 
   cmake \
-    -G"Unix Makefiles" \
-    -DCMAKE_MAKE_PROGRAM="/usr/bin/make.exe" \
+    -G"$_generator" \
     -DCMAKE_C_COMPILER="/usr/bin/gcc.exe" \
     -DCMAKE_CXX_COMPILER="/usr/bin/g++.exe" \
     -DFFI_INCLUDE_DIR="${FFI_INCLUDE_DIR}" \
