@@ -2,7 +2,7 @@
 # Contributor: Niklas Holm <jadedcyborg@gmail.com>
 
 pkgname='parallel'
-pkgver='20180522'
+pkgver='20180922'
 pkgrel='1'
 pkgdesc='A shell tool for executing jobs in parallel'
 arch=('any')
@@ -10,20 +10,29 @@ url='https://www.gnu.org/software/parallel/'
 license=('GPL3')
 depends=('perl')
 source=(
-    "https://ftpmirror.gnu.org/gnu/${pkgname}/${pkgname}-${pkgver}.tar.bz2"
+    "https://ftpmirror.gnu.org/gnu/${pkgname}/${pkgname}-${pkgver}.tar.bz2"{,".sig"}
     "0001-support-MSys2.patch"
 )
-sha1sums=('e148aebb83dd5d2fa462cb04f7274a45ff93eb92'
-          '19a51783dd9c2f50e6aee167a6c70ca05bad99e8')
+validpgpkeys=('CDA01A4208C4F74506107E7BD1AB451688888888')
+sha256sums=('ea078ef0e0528c9b5d1c60bf6cf8454ce7586521982c677a450e0baff8a7071f'
+            'SKIP'
+            '1a9f6f9c42587d3153dd452b0ec6c09fad2d44e94995e4a2c28045d3d01b4d4a')
 
 prepare() {
   cd "${srcdir}/${pkgname}-${pkgver}"
   patch -p1 -i "${srcdir}/0001-support-MSys2.patch"
+
+  # ACLOCAL_PATH is needed to pick up local m4 macro
+  ACLOCAL_PATH="${srcdir}/${pkgname}-${pkgver}" autoreconf -vif
 }
 
 build() {
   cd "${srcdir}/${pkgname}-${pkgver}"
-  ./configure --prefix="/usr"
+  ./configure \
+    --build="${CHOST}" \
+    --host=${CHOST} \
+    --target=${CHOST} \
+    --prefix="/usr"
   make
 }
 

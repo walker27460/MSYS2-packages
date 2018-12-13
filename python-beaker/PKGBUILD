@@ -3,15 +3,15 @@
 _realname=beaker
 pkgbase="python-${_realname}"
 pkgname=("python3-${_realname}" "python2-${_realname}")
-pkgver=1.9.0
-pkgrel=1
+pkgver=1.10.0
+pkgrel=3
 pkgdesc="Caching and sessions WSGI middleware for use with web applications and stand-alone Python scripts and applications"
 arch=('i686' 'x86_64')
 license=('PSF')
 url="http://beaker.groovie.org/"
 depends=("python2-setuptools" "python3-setuptools")
 source=("${_realname}-${pkgver}.tar.gz"::https://github.com/bbangert/beaker/archive/${pkgver}.tar.gz)
-sha256sums=('ac8828ea391b463b0f6b844a04648ea8172fd6e9938fe6a7bea412cc6795d5c8')
+sha256sums=('50d4c24ae8a7015e3a7edf0482cef84c2dd6b2d76eabf441927236bbf4e26eeb')
 
 prepare() {
   cd "${srcdir}"
@@ -40,7 +40,7 @@ package_python3-beaker() {
 }
 
 package_python2-beaker() {
-  depends=('python2>=2.7')
+  depends=('python2>=2.7' 'python2-funcsigs')
 
   cd "${srcdir}/${_realname}-${pkgver}-python2"
   python2 setup.py install --prefix=/usr --root="${pkgdir}" --optimize=1 --skip-build
